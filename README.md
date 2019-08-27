@@ -1,3 +1,6 @@
+[view Live Link](https://zowar.arawwad.now.sh) 
+email should be eve.holt@reqres.in
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
