@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -8,6 +8,7 @@ import Toast from 'components/global/Toast';
 
 import { FooterText, RegisterLink } from './Login';
 
+import AuthContext from 'contexts/AuthContext';
 import api from 'api';
 
 
@@ -24,6 +25,8 @@ const Register = ({ history }) => {
 
     const [showToast, setShowToast] = useState(false);
 
+    const {setAuth} = useContext(AuthContext);
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -35,7 +38,10 @@ const Register = ({ history }) => {
             api.post('/register', {
                 email, password, confirmPassword
             })
-                .then(() => history.push('/'))
+                .then(() => {
+                    setAuth(true)
+                    history.push('/')
+                })
                 .catch(() => setShowToast(true))
         }
 
