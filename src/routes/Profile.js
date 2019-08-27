@@ -75,7 +75,7 @@ const Profile = () => {
                 <Title>Student</Title>
                 <Email>{user.email}</Email>
                 <Link to="/result">
-                    <Button size="lg" style={{ width: '200px', 'margin-top': '20px' }} variant="primary">
+                    <Button size="lg" style={{ width: '200px', marginTop: '20px' }} variant="primary">
                         View Results
                     </Button>
                 </Link>

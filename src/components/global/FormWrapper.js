@@ -23,6 +23,7 @@ const Card = styled.div`
     background: #fff;
     border-radius: 3px;
     overflow: hidden;
+    position: relative;
 `
 
 const Title = styled.h1`

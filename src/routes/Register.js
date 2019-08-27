@@ -24,7 +24,7 @@ const Register = () => {
                     <Form.Control type="password" placeholder="Confirm Password" />
                 </Form.Group>
 
-                <Button size="lg" style={{width: '100%', 'margin-top': '20px'}} variant="primary" type="submit">
+                <Button size="lg" style={{width: '100%', marginTop: '20px'}} variant="primary" type="submit">
                     Submit
                 </Button>
 
