@@ -95,7 +95,7 @@ const Login = ({ history }) => {
 
             </Form>
 
-            <FooterText>Are you new ? <RegisterLink to="/register">Register</RegisterLink></FooterText>
+            <FooterText>Are you new? <RegisterLink to="/register">Register</RegisterLink></FooterText>
         </FormWrapper>
     )
 }

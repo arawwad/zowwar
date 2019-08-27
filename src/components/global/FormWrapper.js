@@ -19,7 +19,7 @@ const Card = styled.div`
     flex-direction: column;
     align-items: center;
     width: 450px;
-    min-height: 500px;
+    min-height: 600px;
     background: #fff;
     border-radius: 3px;
     overflow: hidden;
