@@ -4,7 +4,7 @@ import FormWrapper from 'components/global/FormWrapper'
 const Register = () => {
 
     return ( 
-        <FormWrapper>Register</FormWrapper>
+        <FormWrapper title="Register">hello</FormWrapper>
     )
 }
 
