@@ -1,9 +1,10 @@
 import React from 'react';
+import FormWrapper from 'components/global/FormWrapper'
 
 const Register = () => {
 
-    return (
-        <div>Register</div>
+    return ( 
+        <FormWrapper>Register</FormWrapper>
     )
 }
 
