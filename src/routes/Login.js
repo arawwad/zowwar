@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 import styled from 'styled-components';
-import FormWrapper from 'components/global/FormWrapper'
+import FormWrapper from 'components/global/FormWrapper';
+import Toast from 'components/global/Toast';
 
 import api from 'api';
 
@@ -27,30 +28,37 @@ const RegisterLink = styled(Link)`
 
 //////////////////////////////////////////////////////////////
 
-const Login = () => {
+const Login = ({ history }) => {
     const [validated, setValidated] = useState(false);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const [showToast, setShowToast] = useState(false);
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
+
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.stopPropagation();
+        } else {
+            api.post('/login', {
+                email, password
+            })
+                .then(() => history.push('/'))
+                .catch(() => setShowToast(true))
         }
 
         setValidated(true);
 
-        api.post('/login', {
-            email, password
-        })
-        .then(console.log)
-        .catch(console.log)
+        
     }
 
     return (
         <FormWrapper title="Login">
+            <Toast show={showToast} setShow={setShowToast} />
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
                 <Form.Group controlId="formBasicEmail">
@@ -69,9 +77,9 @@ const Login = () => {
 
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control 
+                    <Form.Control
                         required
-                        type="password" 
+                        type="password"
                         placeholder="Password"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
@@ -92,4 +100,4 @@ const Login = () => {
     )
 }
 
-export {Login as default, RegisterLink, FooterText};
+export { Login as default, RegisterLink, FooterText };
