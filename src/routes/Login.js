@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -9,6 +10,7 @@ import FormWrapper from 'components/global/FormWrapper';
 import Toast from 'components/global/Toast';
 
 import api from 'api';
+import AuthContext from 'contexts/AuthContext';
 
 /////////////////////////////////////////////////////////////
 
@@ -36,6 +38,8 @@ const Login = ({ history }) => {
 
     const [showToast, setShowToast] = useState(false);
 
+    const {setAuth} = useContext(AuthContext)
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -47,7 +51,10 @@ const Login = ({ history }) => {
             api.post('/login', {
                 email, password
             })
-                .then(() => history.push('/'))
+                .then(() => {
+                    setAuth(true);
+                    history.push('/')
+                })
                 .catch(() => setShowToast(true))
         }
 

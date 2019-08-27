@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom'
 
+import Loading from 'components/global/Loading';
+
 import api from 'api';
+import AuthContext from 'contexts/AuthContext';
 import background from 'assets/education.jpg'
 
 const Container = styled.div`
@@ -62,25 +65,39 @@ const Email = styled.p`
 const Profile = () => {
     const getData = res => res.data.data
     const [user, setUser] = useState({});
+    const [loading, setLoading] = useState(false);
+    const { setAuth } = useContext(AuthContext);
+
+
     useEffect(() => {
-        api.get('/users/2').then(getData).then(setUser);
+        setLoading(true)
+        api.get('/users/2').then(getData).then(setUser).then(() => setLoading(false));
     }, [])
 
     return (
-        <Container>
-            <Hero />
-            <Card>
-                <Avatar src={user.avatar} alt={`profile picture of user ${user.first_name}`} />
-                <FullName>{user.first_name} {user.last_name}</FullName>
-                <Title>Student</Title>
-                <Email>{user.email}</Email>
-                <Link to="/result">
-                    <Button size="lg" style={{ width: '200px', marginTop: '20px' }} variant="primary">
-                        View Results
+        loading ? <Loading /> :
+            <Container>
+                <Hero />
+                <Card>
+                    <Avatar src={user.avatar} alt={`profile picture of user ${user.first_name}`} />
+                    <FullName>{user.first_name} {user.last_name}</FullName>
+                    <Title>Student</Title>
+                    <Email>{user.email}</Email>
+                    <Link to="/result">
+                        <Button size="lg" style={{ width: '200px', marginTop: '20px' }} variant="primary">
+                            View Results
                     </Button>
-                </Link>
-            </Card>
-        </Container>
+                    </Link>
+
+
+                    <Link to="/login">
+                        <Button onClick={() => { setAuth(false) }} size="lg" style={{ width: '200px', marginTop: '20px' }} variant="danger">
+                            Logout
+                    </Button>
+                    </Link>
+
+                </Card>
+            </Container>
     )
 }
 
