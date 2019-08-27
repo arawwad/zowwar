@@ -64,6 +64,7 @@ const Login = ({ history }) => {
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control
+                        data-testid="email"
                         required
                         type="email"
                         placeholder="Enter email"
@@ -78,6 +79,7 @@ const Login = ({ history }) => {
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
+                        data-testid="password"
                         required
                         type="password"
                         placeholder="Password"
@@ -89,7 +91,7 @@ const Login = ({ history }) => {
                     </Form.Control.Feedback>
                 </Form.Group>
 
-                <Button size="lg" style={{ width: '100%', marginTop: '20px' }} variant="primary" type="submit">
+                <Button data-testid="submit" size="lg" style={{ width: '100%', marginTop: '20px' }} variant="primary" type="submit">
                     Submit
                 </Button>
 
